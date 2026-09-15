@@ -2,20 +2,35 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>부비동염 진단 보조 시스템</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        부비동염 진단 보조 시스템
+    </title>
 
     <link
         rel="stylesheet"
         href="{{ url_for('static', filename='style.css') }}"
     >
+
 </head>
+
 
 <body>
 
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header class="header">
+
     <div class="header-inner">
 
         <div class="brand">
@@ -25,17 +40,33 @@
             </div>
 
             <div class="brand-text">
-                <h2>부비동염 진단 보조 시스템</h2>
+
+                <h2>
+                    부비동염 진단 보조 시스템
+                </h2>
+
+                <p>
+                    Sinusitis Diagnosis Assistant System
+                </p>
+
             </div>
 
         </div>
 
-
     </div>
+
 </header>
 
 
+
+<!-- =========================
+     MAIN
+========================= -->
+
 <main class="home-main">
+
+
+    <!-- HERO -->
 
     <section class="hero">
 
@@ -44,19 +75,36 @@
         </p>
 
         <h1>
+
             X-ray 이미지로
+
             <br>
-            <span>부비동염 진단</span>
+
+            <span>
+                부비동염을 더 정확하게
+            </span>
+
         </h1>
 
+
         <p class="hero-description">
+
             AI 기반 부비동 X-ray 진단 보조 시스템입니다.
+
             <br>
-            이미지를 업로드하고 분석 결과를 확인해보세요.
+
+            이미지를 업로드하고 간편하게
+            분석 결과를 확인해보세요.
+
         </p>
 
     </section>
 
+
+
+    <!-- =========================
+         UPLOAD
+    ========================= -->
 
     <section class="upload-card">
 
@@ -67,7 +115,7 @@
             enctype="multipart/form-data"
         >
 
-            <!-- 실제 파일 input -->
+
             <input
                 type="file"
                 id="imageInput"
@@ -77,13 +125,14 @@
             >
 
 
-            <!-- 업로드 박스 -->
             <div
                 class="upload-box"
                 id="uploadBox"
             >
 
-                <!-- 선택 전 -->
+
+                <!-- 이미지 선택 전 -->
+
                 <div id="uploadGuide">
 
                     <div class="upload-icon">
@@ -94,24 +143,32 @@
                         X-ray 이미지를 업로드하세요
                     </h3>
 
+                    <p>
+                        JPG, JPEG, PNG 파일을 지원합니다.
+                    </p>
+
 
                     <button
                         type="button"
-                        class="upload-button real-upload-button"
+                        class="upload-button"
                         id="selectImageButton"
                     >
                         이미지 선택하기
                     </button>
 
+
                     <div class="divider">
 
                         <span></span>
 
-                        <p>또는</p>
+                        <p>
+                            또는
+                        </p>
 
                         <span></span>
 
                     </div>
+
 
                     <p class="drag-text">
                         이미지를 여기로 드래그 앤 드롭하세요.
@@ -120,7 +177,9 @@
                 </div>
 
 
-                <!-- 선택 후 -->
+
+                <!-- 이미지 선택 후 -->
+
                 <div
                     id="previewArea"
                     class="preview-area"
@@ -130,20 +189,23 @@
                         선택한 X-ray 이미지
                     </div>
 
+
                     <div class="preview-image-box">
 
                         <img
                             id="imagePreview"
                             class="image-preview"
-                            alt="선택한 이미지"
+                            alt="선택한 X-ray 이미지"
                         >
 
                     </div>
+
 
                     <p
                         id="fileName"
                         class="preview-filename"
                     ></p>
+
 
                     <button
                         type="button"
@@ -154,6 +216,7 @@
                     </button>
 
                 </div>
+
 
             </div>
 
@@ -167,46 +230,84 @@
                 분석하기
             </button>
 
+
         </form>
 
     </section>
 
 
+
+    <!-- =========================
+         FEATURES
+    ========================= -->
+
     <section class="features">
 
+
         <div class="feature-item">
-            <div class="feature-icon">✓</div>
-            <h3>자동 상태 분류</h3>
+
+            <div class="feature-icon">
+                ✓
+            </div>
+
+            <h3>
+                자동 상태 분류
+            </h3>
+
             <p>
                 X-ray 이미지를 업로드하면
                 <br>
                 딥러닝 모델이 상태를 자동으로 분류합니다.
             </p>
+
         </div>
 
+
+
         <div class="feature-item">
-            <div class="feature-icon">+</div>
-            <h3>세분화된 병리 상태 판별</h3>
+
+            <div class="feature-icon">
+                AI
+            </div>
+
+            <h3>
+                4-Class 상태 판별
+            </h3>
+
             <p>
-                병변의 위치와 염증 정도를 분석하여
+                Normal, Left, Right, Both의
                 <br>
-                세분화된 병리 상태를 판별합니다.
+                4가지 상태로 분류합니다.
             </p>
+
         </div>
 
+
+
         <div class="feature-item">
-            <div class="feature-icon">AI</div>
-            <h3>AI 판단 근거 시각화</h3>
+
+            <div class="feature-icon">
+                ◉
+            </div>
+
+            <h3>
+                AI 판단 근거 시각화
+            </h3>
+
             <p>
-                예측 확률과 Grad-CAM을 통해
+                클래스별 예측 확률과 Grad-CAM을 통해
                 <br>
                 모델의 판단 결과를 시각적으로 제공합니다.
             </p>
+
         </div>
+
 
     </section>
 
+
 </main>
+
 
 
 <footer class="footer">
@@ -222,7 +323,9 @@
 </footer>
 
 
+
 <script>
+
     const imageInput =
         document.getElementById("imageInput");
 
@@ -250,26 +353,62 @@
     const uploadForm =
         document.getElementById("uploadForm");
 
+    const uploadBox =
+        document.getElementById("uploadBox");
 
-    // 이미지 선택하기 버튼
+
+    function openFilePicker() {
+
+        imageInput.click();
+
+    }
+
+
     selectImageButton.addEventListener(
         "click",
-        function () {
-            imageInput.click();
-        }
+        openFilePicker
     );
 
 
-    // 다른 이미지 선택 버튼
     changeImageButton.addEventListener(
         "click",
-        function () {
-            imageInput.click();
-        }
+        openFilePicker
     );
 
 
-    // 파일 선택 시
+    function showPreview(file) {
+
+        if (!file) {
+            return;
+        }
+
+
+        const imageURL =
+            URL.createObjectURL(file);
+
+
+        imagePreview.src =
+            imageURL;
+
+
+        fileName.textContent =
+            file.name;
+
+
+        uploadGuide.style.display =
+            "none";
+
+
+        previewArea.style.display =
+            "flex";
+
+
+        analyzeButton.disabled =
+            false;
+
+    }
+
+
     imageInput.addEventListener(
         "change",
         function () {
@@ -277,39 +416,88 @@
             const file =
                 imageInput.files[0];
 
-            if (!file) {
-                return;
-            }
-
-            const imageURL =
-                URL.createObjectURL(file);
-
-            imagePreview.src =
-                imageURL;
-
-            fileName.textContent =
-                file.name;
-
-            uploadGuide.style.display =
-                "none";
-
-            previewArea.style.display =
-                "flex";
-
-            analyzeButton.disabled =
-                false;
+            showPreview(file);
 
         }
     );
 
 
-    // 폼 제출 전 확인
+    /* 드래그 앤 드롭 */
+
+    uploadBox.addEventListener(
+        "dragover",
+        function (event) {
+
+            event.preventDefault();
+
+            uploadBox.classList.add(
+                "drag-over"
+            );
+
+        }
+    );
+
+
+    uploadBox.addEventListener(
+        "dragleave",
+        function () {
+
+            uploadBox.classList.remove(
+                "drag-over"
+            );
+
+        }
+    );
+
+
+    uploadBox.addEventListener(
+        "drop",
+        function (event) {
+
+            event.preventDefault();
+
+            uploadBox.classList.remove(
+                "drag-over"
+            );
+
+
+            const files =
+                event.dataTransfer.files;
+
+
+            if (files.length === 0) {
+                return;
+            }
+
+
+            const file =
+                files[0];
+
+
+            const dataTransfer =
+                new DataTransfer();
+
+
+            dataTransfer.items.add(file);
+
+
+            imageInput.files =
+                dataTransfer.files;
+
+
+            showPreview(file);
+
+        }
+    );
+
+
     uploadForm.addEventListener(
         "submit",
         function (event) {
 
             const file =
                 imageInput.files[0];
+
 
             if (!file) {
 
@@ -320,18 +508,23 @@
                 );
 
                 return;
+
             }
+
 
             analyzeButton.disabled =
                 true;
+
 
             analyzeButton.textContent =
                 "분석 중...";
 
         }
     );
+
 </script>
 
 
 </body>
+
 </html>
