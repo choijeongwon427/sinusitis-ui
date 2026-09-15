@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>부비동염 진단 보조 시스템</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+<header class="header">
+    <div class="header-inner">
+
+        <div class="brand">
+
+            <div class="logo-circle">
+                AI
+            </div>
+
+            <div class="brand-text">
+                <h2>부비동염 진단 보조 시스템</h2>
+            </div>
+
+        </div>
+
+
+    </div>
+</header>
+
+
+<main class="home-main">
+
+    <section class="hero">
+
+        <p class="hero-sub">
+            AI X-RAY ANALYSIS
+        </p>
+
+        <h1>
+            X-ray 이미지로
+            <br>
+            <span>부비동염 진단</span>
+        </h1>
+
+        <p class="hero-description">
+            AI 기반 부비동 X-ray 진단 보조 시스템입니다.
+            <br>
+            이미지를 업로드하고 분석 결과를 확인해보세요.
+        </p>
+
+    </section>
+
+
+    <section class="upload-card">
+
+        <form
+            id="uploadForm"
+            action="{{ url_for('analyze') }}"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+            <!-- 실제 파일 input -->
+            <input
+                type="file"
+                id="imageInput"
+                name="file"
+                accept=".jpg,.jpeg,.png,image/jpeg,image/png"
+                hidden
+            >
+
+
+            <!-- 업로드 박스 -->
+            <div
+                class="upload-box"
+                id="uploadBox"
+            >
+
+                <!-- 선택 전 -->
+                <div id="uploadGuide">
+
+                    <div class="upload-icon">
+                        ↑
+                    </div>
+
+                    <h3>
+                        X-ray 이미지를 업로드하세요
+                    </h3>
+
+
+                    <button
+                        type="button"
+                        class="upload-button real-upload-button"
+                        id="selectImageButton"
+                    >
+                        이미지 선택하기
+                    </button>
+
+                    <div class="divider">
+
+                        <span></span>
+
+                        <p>또는</p>
+
+                        <span></span>
+
+                    </div>
+
+                    <p class="drag-text">
+                        이미지를 여기로 드래그 앤 드롭하세요.
+                    </p>
+
+                </div>
+
+
+                <!-- 선택 후 -->
+                <div
+                    id="previewArea"
+                    class="preview-area"
+                >
+
+                    <div class="preview-title">
+                        선택한 X-ray 이미지
+                    </div>
+
+                    <div class="preview-image-box">
+
+                        <img
+                            id="imagePreview"
+                            class="image-preview"
+                            alt="선택한 이미지"
+                        >
+
+                    </div>
+
+                    <p
+                        id="fileName"
+                        class="preview-filename"
+                    ></p>
+
+                    <button
+                        type="button"
+                        id="changeImageButton"
+                        class="change-image-btn"
+                    >
+                        다른 이미지 선택
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                id="analyzeButton"
+                class="analyze-btn"
+                disabled
+            >
+                분석하기
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <section class="features">
+
+        <div class="feature-item">
+            <div class="feature-icon">✓</div>
+            <h3>자동 상태 분류</h3>
+            <p>
+                X-ray 이미지를 업로드하면
+                <br>
+                딥러닝 모델이 상태를 자동으로 분류합니다.
+            </p>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">+</div>
+            <h3>세분화된 병리 상태 판별</h3>
+            <p>
+                병변의 위치와 염증 정도를 분석하여
+                <br>
+                세분화된 병리 상태를 판별합니다.
+            </p>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">AI</div>
+            <h3>AI 판단 근거 시각화</h3>
+            <p>
+                예측 확률과 Grad-CAM을 통해
+                <br>
+                모델의 판단 결과를 시각적으로 제공합니다.
+            </p>
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <span>
+        건양대학교 의료IT공학과
+    </span>
+
+    <span>
+        © 2026 Sinusitis Diagnosis Assistant System
+    </span>
+
+</footer>
+
+
+<script>
+    const imageInput =
+        document.getElementById("imageInput");
+
+    const selectImageButton =
+        document.getElementById("selectImageButton");
+
+    const changeImageButton =
+        document.getElementById("changeImageButton");
+
+    const uploadGuide =
+        document.getElementById("uploadGuide");
+
+    const previewArea =
+        document.getElementById("previewArea");
+
+    const imagePreview =
+        document.getElementById("imagePreview");
+
+    const fileName =
+        document.getElementById("fileName");
+
+    const analyzeButton =
+        document.getElementById("analyzeButton");
+
+    const uploadForm =
+        document.getElementById("uploadForm");
+
+
+    // 이미지 선택하기 버튼
+    selectImageButton.addEventListener(
+        "click",
+        function () {
+            imageInput.click();
+        }
+    );
+
+
+    // 다른 이미지 선택 버튼
+    changeImageButton.addEventListener(
+        "click",
+        function () {
+            imageInput.click();
+        }
+    );
+
+
+    // 파일 선택 시
+    imageInput.addEventListener(
+        "change",
+        function () {
+
+            const file =
+                imageInput.files[0];
+
+            if (!file) {
+                return;
+            }
+
+            const imageURL =
+                URL.createObjectURL(file);
+
+            imagePreview.src =
+                imageURL;
+
+            fileName.textContent =
+                file.name;
+
+            uploadGuide.style.display =
+                "none";
+
+            previewArea.style.display =
+                "flex";
+
+            analyzeButton.disabled =
+                false;
+
+        }
+    );
+
+
+    // 폼 제출 전 확인
+    uploadForm.addEventListener(
+        "submit",
+        function (event) {
+
+            const file =
+                imageInput.files[0];
+
+            if (!file) {
+
+                event.preventDefault();
+
+                alert(
+                    "이미지를 먼저 선택해주세요."
+                );
+
+                return;
+            }
+
+            analyzeButton.disabled =
+                true;
+
+            analyzeButton.textContent =
+                "분석 중...";
+
+        }
+    );
+</script>
+
+
+</body>
+</html>
